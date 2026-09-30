@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitva Patel — Resume | Full Stack Developer</title>
+    <meta name="description" content="Resume of Mitva Patel — Full Stack Developer (C#, React.js, ASP.NET Core, Web API, EF Core, SQL Server, Hangfire, SignalR, AWS S3), Ahmedabad.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%230f766e'/><text x='50' y='66' font-size='42' font-family='Arial' font-weight='700' text-anchor='middle' fill='%23fff'>MP</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --accent: #0f766e;
+            --accent-soft: rgba(15, 118, 110, 0.08);
+            --text: #1c1917;
+            --muted: #57534e;
+            --dim: #78716c;
+            --border: #e7e5e4;
+            --side: #fafaf9;
+            --green: #16a34a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Inter", -apple-system, sans-serif; color: var(--text);
+            background: #f0efed; line-height: 1.5; -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        h1, h2, h4 { font-family: "Plus Jakarta Sans", "Inter", sans-serif; }
+
+        /* ---------- toolbar ---------- */
+        .toolbar {
+            position: sticky; top: 0; z-index: 10;
+            display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+            padding: 12px clamp(16px, 4vw, 40px);
+            background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+        .toolbar-title { font-family: "Plus Jakarta Sans", sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+        .toolbar-title span { color: var(--accent); }
+        .toolbar-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tb-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 18px; border-radius: 999px; border: 1px solid var(--border);
+            font-size: 13.5px; font-weight: 600; cursor: pointer; background: #fff; color: var(--text);
+            font-family: inherit; transition: transform .2s, border-color .2s, background .2s;
+        }
+        .tb-btn:hover { transform: translateY(-2px); border-color: var(--dim); }
+        .tb-btn.primary { border-color: var(--accent); color: #fff; background: var(--accent); }
+        .tb-btn.primary:hover { background: #115e59; }
+
+        /* ---------- page ---------- */
+        .page {
+            width: 210mm; height: 297mm; margin: 28px auto; overflow: hidden;
+            background: #fff; box-shadow: 0 20px 50px rgba(28, 25, 23, 0.1);
+            display: flex; flex-direction: column;
+        }
+
+        /* ---------- header ---------- */
+        .header { padding: 26px 32px 18px; border-bottom: 1px solid var(--border); position: relative; }
+        .header::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--accent); }
+        .head-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+        .name { font-size: 36px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+        .name span { color: var(--accent); }
+        .title { font-size: 13.5px; font-weight: 500; color: var(--muted); margin-top: 8px; }
+        .title b { color: var(--text); font-weight: 700; }
+        .monogram {
+            width: 60px; height: 60px; flex-shrink: 0; border-radius: 16px; display: grid; place-items: center;
+            font-family: "Plus Jakarta Sans", sans-serif; font-size: 23px; font-weight: 800; color: #fff; background: var(--accent);
+        }
+        .contact-bar { display: flex; flex-wrap: wrap; gap: 7px 20px; margin-top: 16px; }
+        .contact-bar a, .contact-bar span { display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--muted); }
+        .contact-bar i { color: var(--accent); font-size: 10.5px; }
+
+        .header.mini { padding: 14px 32px; }
+        .header.mini .head-top { align-items: center; }
+        .header.mini .name { font-size: 20px; }
+        .header.mini .title { margin-top: 0; font-size: 11.5px; }
+
+        /* ---------- body layout ---------- */
+        .body { flex: 1; display: grid; grid-template-columns: 1fr 64mm; }
+        .main { padding: 18px 24px 20px 32px; }
+        .side { background: var(--side); border-left: 1px solid var(--border); padding: 18px 20px 20px; }
+
+        .sec-title {
+            font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--accent);
+            margin: 16px 0 9px; padding-bottom: 5px; border-bottom: 1px solid var(--border);
+        }
+        .sec-title:first-child { margin-top: 0; }
+
+        .summary { font-size: 11.3px; color: var(--muted); line-height: 1.6; }
+        .summary strong { color: var(--text); font-weight: 600; }
+
+        /* ---------- experience ---------- */
+        .job { margin-bottom: 13px; }
+        .job:last-child { margin-bottom: 0; }
+        .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+        .job-head h4 { font-size: 13px; font-weight: 700; letter-spacing: -0.01em; }
+        .period { font-size: 10.5px; font-weight: 600; color: var(--dim); white-space: nowrap; }
+        .company { font-size: 11px; color: var(--accent); font-weight: 600; margin: 1px 0 5px; }
+        .company span { color: var(--dim); font-weight: 400; }
+        .current { font-size: 8.5px; font-weight: 700; letter-spacing: .5px; color: var(--green); background: rgba(22, 163, 74, .1); padding: 2px 7px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+        .points { list-style: none; }
+        .points li { position: relative; padding-left: 12px; font-size: 10.8px; color: var(--muted); margin-bottom: 3px; line-height: 1.5; }
+        .points li::before { content: ""; position: absolute; left: 0; top: 6px; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+        .points li b { color: var(--text); font-weight: 600; }
+        .tech { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+        .tech span { font-size: 9.5px; padding: 2px 7px; border-radius: 4px; background: #f5f5f4; color: var(--muted); font-weight: 500; }
+
+        /* ---------- projects ---------- */
+        .kproject { padding: 11px 13px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; }
+        .kproject-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+        .kproject h4 { font-size: 13px; font-weight: 700; }
+        .kproject small { font-size: 9.5px; color: var(--accent); font-weight: 600; letter-spacing: .3px; }
+        .kproject .tech { margin: 5px 0 7px; }
+        .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .project { padding: 9px 11px; border: 1px solid var(--border); border-radius: 10px; }
+        .project h4 { font-size: 11.5px; font-weight: 700; line-height: 1.3; }
+        .project small { display: block; font-size: 9.5px; color: var(--accent); font-weight: 600; margin-top: 1px; }
+        .project p { font-size: 10.5px; color: var(--muted); margin: 4px 0 5px; }
+        .tag-freelance { font-family: "Inter", sans-serif; font-size: 8px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; color: #92400e; background: #fef3c7; padding: 1px 6px; border-radius: 20px; margin-left: 4px; vertical-align: middle; }
+
+        /* ---------- sidebar ---------- */
+        .skill-group { margin-bottom: 11px; }
+        .skill-group strong { display: block; font-size: 10.5px; font-weight: 600; margin-bottom: 4px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+        .chip { font-size: 9.5px; padding: 2px 8px; border-radius: 20px; background: #fff; border: 1px solid var(--border); color: var(--muted); }
+
+        .edu strong { display: block; font-size: 11.5px; color: var(--text); line-height: 1.35; }
+        .edu span { display: block; font-size: 10.5px; color: var(--muted); margin-top: 3px; }
+        .edu em { display: block; font-style: normal; font-size: 10px; color: var(--accent); font-weight: 600; margin-top: 4px; }
+
+        .award { display: flex; gap: 10px; margin-bottom: 11px; }
+        .award i { width: 26px; height: 26px; flex-shrink: 0; display: grid; place-items: center; border-radius: 8px; background: #fef3c7; color: #b45309; font-size: 11px; }
+        .award strong { display: block; font-size: 11px; line-height: 1.3; }
+        .award span { display: block; font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+        .pref { list-style: none; }
+        .pref li { font-size: 10.5px; color: var(--text); margin-bottom: 8px; }
+        .pref li b { display: block; font-size: 9px; letter-spacing: 1px; color: var(--dim); font-weight: 600; text-transform: uppercase; }
+
+        .plain-list { list-style: none; }
+        .plain-list li { position: relative; padding-left: 16px; font-size: 10.5px; color: var(--muted); margin-bottom: 5px; }
+        .plain-list li i { position: absolute; left: 0; top: 3px; font-size: 9px; color: var(--accent); }
+
+        @media (max-width: 860px) {
+            .page { width: auto; height: auto; min-height: 0; margin: 16px; }
+            .body { grid-template-columns: 1fr; }
+            .side { border-left: none; border-top: 1px solid var(--border); }
+            .projects { grid-template-columns: 1fr; }
+            .name { font-size: 30px; }
+        }
+
+        @page { size: A4; margin: 0; }
+        @media print {
+            body { background: #fff; }
+            .toolbar { display: none; }
+            .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; break-after: page; }
+            .page:last-child { break-after: auto; }
+            .body { grid-template-columns: 1fr 64mm; }
+            .projects { grid-template-columns: 1fr 1fr; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <div class="toolbar-title">Mitva Patel<span>.</span> — Resume</div>
+        <div class="toolbar-actions">
+            <a href="index.html" class="tb-btn"><i class="fa-solid fa-arrow-left"></i> Portfolio</a>
+            <a href="mailto:mitva.patel024@gmail.com" class="tb-btn"><i class="fa-regular fa-envelope"></i> Email</a>
+            <button class="tb-btn primary" onclick="window.print()"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 1 ================= -->
+    <main class="page">
+        <header class="header">
+            <div class="head-top">
+                <div>
+                    <h1 class="name">MITVA PATEL<span>.</span></h1>
+                    <p class="title"><b>Full Stack Developer</b> &nbsp;·&nbsp; ASP.NET Core &nbsp;·&nbsp; Web API &nbsp;·&nbsp; C# &nbsp;·&nbsp; React.js &nbsp;·&nbsp; SQL Server</p>
+                </div>
+                <div class="monogram">MP</div>
+            </div>
+            <div class="contact-bar">
+                <a href="mailto:mitva.patel024@gmail.com"><i class="fa-solid fa-envelope"></i>mitva.patel024@gmail.com</a>
+                <a href="tel:+919328290795"><i class="fa-solid fa-phone"></i>+91 93282 90795</a>
+                <span><i class="fa-solid fa-location-dot"></i>Ahmedabad, Gujarat</span>
+            </div>
+        </header>
+
+        <div class="body">
+            <section class="main">
+                <h2 class="sec-title">Professional Summary</h2>
+                <p class="summary">
+                    <strong>Full Stack Developer</strong> with <strong>3.5+ years</strong> of professional experience building and maintaining web
+                    applications using <strong>C#, ASP.NET Core, ASP.NET MVC, RESTful Web APIs, Entity Framework Core and SQL Server</strong>.
+                    Experienced in developing <strong>CRM and HRMS</strong> solutions, implementing JWT-based authentication and role-based
+                    authorization, designing optimized SQL queries and stored procedures, and integrating <strong>AWS S3, Hangfire and
+                    SignalR</strong>. Familiar with React.js (Hooks, Redux Toolkit, React Router, Axios), JavaScript, HTML5, CSS3, Bootstrap, jQuery and AJAX. Strong background in
+                    backend development, API integration, database optimization, debugging and Agile development.
+                </p>
+
+                <h2 class="sec-title">Experience</h2>
+
+                <div class="job">
+                    <div class="job-head">
+                        <h4>Full Stack Developer <span class="current">CURRENT</span></h4>
+                        <span class="period">Aug 2023 – Present</span>
+                    </div>
+                    <div class="company">Helix Tech-It Solutions <span>• Ahmedabad</span></div>
+                    <ul class="points">
+                        <li>Develop and maintain scalable web applications using <b>C#, ASP.NET Core, ASP.NET MVC and SQL Server</b>.</li>
+                        <li>Design and implement <b>RESTful Web APIs</b> for frontend applications and third-party integrations.</li>
+                        <li>Develop <b>CRM and HRMS</b> modules covering leads, clients, sales, training, accounts, employee management, leave management, payroll and reporting.</li>
+                        <li>Build and optimize <b>SQL Server stored procedures</b> for pagination, filtering, sorting, dynamic searching and complex business operations.</li>
+                        <li>Implement <b>Entity Framework Core and LINQ</b> for database access, data modeling, migrations and application development.</li>
+                        <li>Implement <b>JWT authentication and role-based authorization</b> to secure application access.</li>
+                        <li>Integrate <b>AWS S3</b> for secure storage and retrieval of documents, PDFs, images, payslips and other business files.</li>
+                        <li>Develop <b>Hangfire</b> background jobs for scheduled processing, invoice generation, payroll processing and automated system tasks.</li>
+                        <li>Implement <b>SignalR</b> real-time notifications for role-based alerts across users and departments.</li>
+                        <li>Develop automated <b>email notification workflows</b> for approvals, payroll updates and system alerts.</li>
+                        <li>Contribute to frontend development using <b>React.js, Redux Toolkit, React Router and Axios</b>, plus JavaScript, Bootstrap, jQuery and AJAX.</li>
+                        <li>Use <b>Postman and Swagger</b> for API testing, documentation and integration validation.</li>
+                        <li>Participate in debugging, code reviews, issue resolution and Agile development activities.</li>
+                    </ul>
+                    <div class="tech"><span>C#</span><span>ASP.NET Core</span><span>Web API</span><span>EF Core</span><span>SQL Server</span><span>Hangfire</span><span>SignalR</span><span>AWS S3</span><span>React.js</span></div>
+                </div>
+
+                <div class="job">
+                    <div class="job-head">
+                        <h4>.NET Developer Intern</h4>
+                        <span class="period">Apr 2023 – Jul 2023</span>
+                    </div>
+                    <div class="company">Helix Tech-It Solutions <span>• Ahmedabad</span></div>
+                    <ul class="points">
+                        <li>Developed web application features using ASP.NET and ASP.NET MVC.</li>
+                        <li>Implemented CRUD operations, backend business logic and server-side validation.</li>
+                        <li>Worked with C#, Entity Framework and SQL Server.</li>
+                        <li>Assisted with debugging, bug fixing and UI enhancements.</li>
+                        <li>Participated in code reviews and team discussions to understand software development best practices.</li>
+                    </ul>
+                    <div class="tech"><span>ASP.NET MVC</span><span>C#</span><span>Entity Framework</span><span>SQL Server</span></div>
+                </div>
+            </section>
+
+            <aside class="side">
+                <h2 class="sec-title">Skills</h2>
+                <div class="skill-group">
+                    <strong>Backend</strong>
+                    <div class="chips">
+                        <span class="chip">.NET</span><span class="chip">C#</span><span class="chip">ASP.NET Core</span><span class="chip">ASP.NET MVC</span>
+                        <span class="chip">ASP.NET Core Web API</span><span class="chip">RESTful APIs</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <strong>Frameworks &amp; ORM</strong>
+                    <div class="chips"><span class="chip">Entity Framework Core</span><span class="chip">LINQ</span></div>
+                </div>
+                <div class="skill-group">
+                    <strong>Authentication &amp; Security</strong>
+                    <div class="chips"><span class="chip">JWT</span><span class="chip">Role-Based Authorization</span><span class="chip">Authentication</span></div>
+                </div>
+                <div class="skill-group">
+                    <strong>Database</strong>
+                    <div class="chips">
+                        <span class="chip">Microsoft SQL Server</span><span class="chip">Stored Procedures</span><span class="chip">Functions</span>
+                        <span class="chip">Triggers</span><span class="chip">Views</span><span class="chip">Joins &amp; CTEs</span>
+                        <span class="chip">Transactions</span><span class="chip">Indexing</span><span class="chip">Query Optimization</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <strong>Frontend</strong>
+                    <div class="chips">
+                        <span class="chip">React.js</span><span class="chip">React Hooks</span><span class="chip">Redux Toolkit</span>
+                        <span class="chip">React Router</span><span class="chip">Axios</span><span class="chip">Material UI</span>
+                        <span class="chip">React Hook Form</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Bootstrap</span>
+                        <span class="chip">AJAX</span><span class="chip">JavaScript</span><span class="chip">jQuery</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <strong>Background &amp; Real-Time</strong>
+                    <div class="chips"><span class="chip">Hangfire</span><span class="chip">SignalR</span></div>
+                </div>
+                <div class="skill-group">
+                    <strong>Cloud &amp; Services</strong>
+                    <div class="chips"><span class="chip">AWS S3</span></div>
+                </div>
+                <div class="skill-group">
+                    <strong>Tools</strong>
+                    <div class="chips">
+                        <span class="chip">Visual Studio</span><span class="chip">VS Code</span><span class="chip">Git</span>
+                        <span class="chip">Postman</span><span class="chip">Swagger</span><span class="chip">Cursor</span>
+                    </div>
+                </div>
+
+                <h2 class="sec-title">Education</h2>
+                <div class="edu">
+                    <strong>Bachelor of Engineering — Computer Engineering</strong>
+                    <span>Silver Oak College of Engineering &amp; Technology, Ahmedabad</span>
+                    <em>2019 – 2023</em>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- ================= PAGE 2 ================= -->
+    <main class="page">
+        <header class="header mini">
+            <div class="head-top">
+                <h1 class="name">MITVA PATEL<span>.</span></h1>
+                <p class="title"><b>Full Stack Developer</b> &nbsp;·&nbsp; mitva.patel024@gmail.com &nbsp;·&nbsp; +91 93282 90795</p>
+            </div>
+        </header>
+
+        <div class="body">
+            <section class="main">
+                <h2 class="sec-title">Key Projects</h2>
+
+                <div class="kproject">
+                    <div class="kproject-head">
+                        <h4>CRM Application</h4>
+                        <small>Helix Tech-It Solutions</small>
+                    </div>
+                    <div class="tech"><span>ASP.NET Core Web API</span><span>C#</span><span>SQL Server</span><span>Entity Framework Core</span><span>AWS S3</span><span>SignalR</span><span>Hangfire</span></div>
+                    <ul class="points">
+                        <li>Developed RESTful APIs for CRM modules including Leads, Clients, Sales, Training, Accounts and Reporting.</li>
+                        <li>Designed and optimized complex SQL Server stored procedures supporting pagination, filtering, sorting and dynamic searching.</li>
+                        <li>Integrated AWS S3 for secure document, PDF and image storage.</li>
+                        <li>Implemented Hangfire background jobs for automated invoice generation and scheduled processing.</li>
+                        <li>Developed SignalR-based real-time notifications for role-based alerts across users and departments.</li>
+                    </ul>
+                </div>
+
+                <div class="kproject">
+                    <div class="kproject-head">
+                        <h4>HRMS Application</h4>
+                        <small>Helix Tech-It Solutions</small>
+                    </div>
+                    <div class="tech"><span>ASP.NET Core Web API</span><span>C#</span><span>SQL Server</span><span>Entity Framework Core</span><span>AWS S3</span><span>Hangfire</span></div>
+                    <ul class="points">
+                        <li>Developed HRMS modules for Employee Management, Leave Management and Payroll Processing.</li>
+                        <li>Implemented automated email notifications for leave approvals, payroll updates and workflow alerts.</li>
+                        <li>Developed scheduled background processing using Hangfire.</li>
+                        <li>Integrated AWS S3 for secure employee document and payslip management.</li>
+                    </ul>
+                </div>
+
+                <div class="kproject">
+                    <div class="kproject-head">
+                        <h4>Company Website</h4>
+                        <small>Helix Tech-It Solutions</small>
+                    </div>
+                    <div class="tech"><span>ASP.NET MVC</span><span>HTML5</span><span>CSS3</span><span>Bootstrap</span><span>SQL Server</span><span>AJAX</span></div>
+                    <ul class="points">
+                        <li>Developed a responsive company website using ASP.NET MVC.</li>
+                        <li>Implemented dynamic content management functionality through an administrative panel.</li>
+                        <li>Developed mobile-responsive interfaces using Bootstrap, HTML5 and CSS3.</li>
+                    </ul>
+                </div>
+
+                <h2 class="sec-title">Other Projects</h2>
+                <div class="projects">
+                    <div class="project">
+                        <h4>Job Portal</h4>
+                        <small>Hiring Platform</small>
+                        <p>Employers post jobs and track applicants; candidates search, upload resumes and apply.</p>
+                        <div class="tech"><span>ASP.NET Core Web API</span><span>SQL Server</span><span>JWT</span></div>
+                    </div>
+                    <div class="project">
+                        <h4>Import / Export Website <span class="tag-freelance">Freelance</span></h4>
+                        <small>Business Website</small>
+                        <p>Product catalogue, inquiry / RFQ forms and WhatsApp contact for international buyers.</p>
+                        <div class="tech"><span>ASP.NET MVC</span><span>SQL Server</span><span>Bootstrap</span></div>
+                    </div>
+                    <div class="project">
+                        <h4>FPV Drone Website <span class="tag-freelance">Freelance</span></h4>
+                        <small>Product Website</small>
+                        <p>Drones, parts and kits with specs, FPV video gallery and service booking inquiries.</p>
+                        <div class="tech"><span>ASP.NET Core</span><span>SQL Server</span><span>Bootstrap</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="side">
+                <h2 class="sec-title">Achievements</h2>
+                <div class="award">
+                    <i class="fa-solid fa-star"></i>
+                    <div><strong>Rising Star Award</strong><span>Recognized for outstanding project contributions.</span></div>
+                </div>
+                <div class="award">
+                    <i class="fa-solid fa-trophy"></i>
+                    <div><strong>Star Performer of the Month</strong><span>Recognized for quality work and timely delivery.</span></div>
+                </div>
+
+                <h2 class="sec-title">Preferences</h2>
+                <ul class="pref">
+                    <li><b>Open to roles</b>Full Stack Developer • .NET Full Stack • ASP.NET Core Developer</li>
+                    <li><b>Employment</b>Full-Time • Contract • Freelance</li>
+                    <li><b>Work mode</b>Remote • Hybrid • On-site</li>
+                    <li><b>Location</b>Ahmedabad, Gujarat</li>
+                </ul>
+
+                <h2 class="sec-title">Strengths</h2>
+                <ul class="plain-list">
+                    <li><i class="fa-solid fa-check"></i>Backend &amp; API development</li>
+                    <li><i class="fa-solid fa-check"></i>Database optimization</li>
+                    <li><i class="fa-solid fa-check"></i>Debugging &amp; issue resolution</li>
+                    <li><i class="fa-solid fa-check"></i>Clean, maintainable code</li>
+                    <li><i class="fa-solid fa-check"></i>Agile teamwork</li>
+                    <li><i class="fa-solid fa-check"></i>Timely delivery</li>
+                </ul>
+
+                <h2 class="sec-title">Contact</h2>
+                <ul class="pref">
+                    <li><b>Email</b>mitva.patel024@gmail.com</li>
+                    <li><b>Phone</b>+91 93282 90795</li>
+                </ul>
+            </aside>
+        </div>
+    </main>
+
+</body>
+</html>
